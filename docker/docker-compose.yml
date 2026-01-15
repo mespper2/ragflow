@@ -44,6 +44,7 @@ services:
     env_file: .env
     networks:
       - ragflow
+      - scrapy_mundo_geral_net
     restart: unless-stopped
     # https://docs.docker.com/engine/daemon/prometheus/#create-a-prometheus-configuration
     # If you use Docker Desktop, the --add-host flag is optional. This flag ensures that the host's internal IP is exposed to the Prometheus container.
@@ -92,6 +93,7 @@ services:
     env_file: .env
     networks:
       - ragflow
+      - scrapy_mundo_geral_net
     restart: unless-stopped
     # https://docs.docker.com/engine/daemon/prometheus/#create-a-prometheus-configuration
     # If you use Docker Desktop, the --add-host flag is optional. This flag ensures that the host's internal IP is exposed to the Prometheus container.
@@ -103,9 +105,7 @@ services:
           devices:
             - driver: nvidia
               count: all
-              capabilities: [gpu]
-
-
+              capabilities: [ gpu ]
   # executor:
   #   depends_on:
   #     mysql:
@@ -130,3 +130,7 @@ services:
   #           - driver: nvidia
   #             count: all
   #             capabilities: [gpu]
+
+networks:
+  scrapy_mundo_geral_net:
+    external: true
